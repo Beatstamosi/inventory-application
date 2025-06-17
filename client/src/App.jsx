@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import NavBar from "./components/NavBar/Nav.jsx";
+import { Outlet } from "react-router-dom";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/hello`)
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
-
-  return <h1>{message || "Loading..."}</h1>;
+  return (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;

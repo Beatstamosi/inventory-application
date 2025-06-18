@@ -1,0 +1,10 @@
+.containerHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerHeader span {
+  color: red;
+}

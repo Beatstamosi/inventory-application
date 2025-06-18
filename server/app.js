@@ -3,6 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import { getAllBoards } from "./db/queries.js";
 
 dotenv.config();
 
@@ -18,8 +19,14 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // API route example
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from Express!" });
+app.get("/api/getallboards", async (req, res) => {
+  try {
+    const boards = await getAllBoards();
+    res.json({ boards });
+  } catch (err) {
+    console.err(err);
+    res.status(500).json({ error: "Data could not be fetched" });
+  }
 });
 
 // Serve static files in production

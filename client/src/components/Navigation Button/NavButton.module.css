@@ -7,3 +7,8 @@
   text-decoration: none;
   display: inline-block;
 }
+
+.linkAllBoards:hover {
+  background-color: #d9d9d9;
+  color: var(--logoBlue);
+}

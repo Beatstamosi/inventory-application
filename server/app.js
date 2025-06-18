@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import { getAllBoards } from "./db/queries.js";
+import { getAllBoards, getAllCategories } from "./db/queries.js";
 
 dotenv.config();
 
@@ -23,6 +23,16 @@ app.get("/api/getallboards", async (req, res) => {
   try {
     const boards = await getAllBoards();
     res.json({ boards });
+  } catch (err) {
+    console.err(err);
+    res.status(500).json({ error: "Data could not be fetched" });
+  }
+});
+
+app.get("/api/getallcategories", async (req, res) => {
+  try {
+    const categories = await getAllCategories();
+    res.json({ categories });
   } catch (err) {
     console.err(err);
     res.status(500).json({ error: "Data could not be fetched" });

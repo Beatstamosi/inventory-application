@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar/Nav.jsx";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BoardsContext } from "./components/BoardsContext.js";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   const [boards, setBoards] = useState([]);
@@ -23,6 +24,7 @@ function App() {
       <BoardsContext.Provider value={boards}>
         <NavBar />
         <Outlet />
+        <Footer />
       </BoardsContext.Provider>
     </>
   );

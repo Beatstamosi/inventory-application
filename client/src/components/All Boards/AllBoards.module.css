@@ -1,0 +1,26 @@
+.containerBoards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.board {
+  background-color: lightblue;
+  width: 500px;
+  color: var(--logoBlue);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.boardName {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.boardBrand {
+  font-style: italic;
+  font-size: 0.9em;
+}

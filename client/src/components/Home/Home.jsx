@@ -20,13 +20,13 @@ function Home() {
 
   return (
     <main className={styles.containerHome}>
-      <div className={styles.containerHeader}>
+      <section className={styles.containerHeader}>
         <h2>
           Currently you have <span>{boards.length}</span> boards in your quiver!
         </h2>
-        <NavButton destination={"allboards"} />
-      </div>
-      <div className={styles.containerCategories}>
+        <NavButton destination={"all-boards"} />
+      </section>
+      <section className={styles.containerCategories}>
         <h2>Categories</h2>
         <div className={styles.categories}>
           {categories.map((category) => (
@@ -39,7 +39,7 @@ function Home() {
             </a>
           ))}
         </div>
-      </div>
+      </section>
     </main>
   );
 }

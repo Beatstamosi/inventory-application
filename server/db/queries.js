@@ -4,7 +4,7 @@ async function getAllBoards() {
   const { rows } = await pool.query(`
     SELECT 
       boards.id AS board_id,
-      boards.name AS board_name,
+      boards.name,
       boards.size,
       boards.volume,
       boards.price,

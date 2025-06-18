@@ -18,7 +18,16 @@ if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: "http://localhost:5173" }));
 }
 
-// API route example
+// Serve static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  });
+}
+
+// API Routes
 app.get("/api/getallboards", async (req, res) => {
   try {
     const boards = await getAllBoards();
@@ -38,15 +47,6 @@ app.get("/api/getallcategories", async (req, res) => {
     res.status(500).json({ error: "Data could not be fetched" });
   }
 });
-
-// Serve static files in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
-}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -3,6 +3,7 @@ import Home from "./Home/Home.jsx";
 import ErrorPage from "../components/ErrorPage/ErrorPage.jsx";
 import AddBoard from "./AddBoard/AddBoard.jsx";
 import AddCategory from "./AddCategory/AddCategory.jsx";
+import AllBoards from "./All Boards/AllBoards.jsx";
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "all-boards",
+        element: <AllBoards />,
       },
       {
         path: "add-board",

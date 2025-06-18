@@ -1,15 +1,18 @@
 import logo from "../../assets/myquiver_logo.png";
 import styles from "./Nav.module.css";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav>
-      <div className={styles.containerNav}>
-        <img src={logo} alt="logo" />
-      </div>
+    <nav className={styles.containerNav}>
       <div>
-        <a href="/add-board">Add Board</a>
-        <a href="/add-category">Add Category</a>
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
+      </div>
+      <div className={styles.containerLinks}>
+        <Link to="/add-board">Add Board</Link>
+        <Link to="/add-category">Add Category</Link>
       </div>
     </nav>
   );

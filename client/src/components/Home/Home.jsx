@@ -1,22 +1,11 @@
 import { useBoards } from "../BoardsContext.js";
 import styles from "./Home.module.css";
 import NavButton from "../Navigation Button/NavButton.jsx";
-import { useEffect, useState } from "react";
+import { useCategories } from "../CategoriesContext.js";
 
 function Home() {
-  const [categories, setCategories] = useState([]);
   const boards = useBoards();
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data.categories);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch categories:", error);
-      });
-  }, []);
+  const categories = useCategories();
 
   return (
     <main className={styles.containerHome}>

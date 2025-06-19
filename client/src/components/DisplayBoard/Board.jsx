@@ -23,13 +23,13 @@ function Board({ board }) {
       <hr />
       <div className={styles.containerBtns}>
         <a
-          href={`/edit/${board.id}`}
+          href={`/edit/${board.name}`}
           className={`${styles.btn} ${styles.edit}`}
         >
           Edit
         </a>
         <a
-          href={`/delete/${board.id}`}
+          href={`/delete/${board.name}`}
           className={`${styles.btn} ${styles.delete}`}
         >
           Delete

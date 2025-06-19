@@ -23,6 +23,7 @@ async function getAllCategories() {
     SELECT 
       categories.id,
       categories.name,
+      categories.description,
       COUNT(boards.id) AS board_count
     FROM categories
     LEFT JOIN boards ON boards.category = categories.id

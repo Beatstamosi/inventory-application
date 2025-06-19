@@ -3,9 +3,11 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BoardsContext } from "./components/BoardsContext.js";
 import Footer from "./components/Footer/Footer.jsx";
+import { CategoriesContext } from "./components/CategoriesContext.js";
 
 function App() {
   const [boards, setBoards] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
@@ -19,12 +21,26 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("categories:", data.categories);
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
+
   return (
     <>
       <BoardsContext.Provider value={boards}>
-        <NavBar />
-        <Outlet />
-        <Footer />
+        <CategoriesContext.Provider value={categories}>
+          <NavBar />
+          <Outlet />
+          <Footer />
+        </CategoriesContext.Provider>
       </BoardsContext.Provider>
     </>
   );

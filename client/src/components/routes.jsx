@@ -4,6 +4,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage.jsx";
 import AddBoard from "./AddBoard/AddBoard.jsx";
 import AddCategory from "./AddCategory/AddCategory.jsx";
 import AllBoards from "./All Boards/AllBoards.jsx";
+import DisplayCategory from "./Category/displayCategory.jsx";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
       {
         path: "all-boards",
         element: <AllBoards />,
+      },
+      {
+        path: "/category/:name",
+        element: <DisplayCategory />,
       },
       {
         path: "add-board",

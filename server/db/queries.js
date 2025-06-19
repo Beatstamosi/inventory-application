@@ -3,7 +3,7 @@ import pool from "./pool.js";
 async function getAllBoards() {
   const { rows } = await pool.query(`
     SELECT 
-      boards.id AS board_id,
+      boards.id,
       boards.name,
       boards.size,
       boards.volume,

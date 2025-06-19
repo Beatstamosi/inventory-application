@@ -1,0 +1,63 @@
+.board {
+  background-color: lightblue;
+  width: 500px;
+  color: var(--logoBlue);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.boardName {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.boardBrand {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.categoryLink {
+  font-weight: bold;
+}
+
+.containerBtns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--logoBlue);
+  font-weight: bold;
+  padding: 5px 5px;
+  width: 50px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.edit {
+  background-color: var(--logoBlue);
+  color: white;
+}
+
+.edit:hover {
+  background-color: lightskyblue;
+  color: var(--logoBlue);
+}
+
+.delete {
+  background-color: lightcoral;
+  color: white;
+}
+
+.delete:hover {
+  background-color: lightpink;
+  color: var(--logoBlue);
+}
+
+hr {
+  border: 1px solid var(--logoBlue);
+}

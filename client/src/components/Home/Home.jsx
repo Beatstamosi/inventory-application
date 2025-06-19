@@ -30,8 +30,8 @@ function Home() {
         <h2>Categories</h2>
         <div className={styles.categories}>
           {categories.map((category) => (
-            <a href={`/category/${category.name}`}>
-              <div key={category.id} className={styles.category}>
+            <a href={`/category/${category.name}`} key={category.id}>
+              <div className={styles.category}>
                 {category.name}
                 <span>{category.board_count}</span>
                 <span>→ See Boards</span>

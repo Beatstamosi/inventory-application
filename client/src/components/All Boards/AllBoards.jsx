@@ -14,7 +14,4 @@ function AllBoards() {
   );
 }
 
-// EDIT, DELETE Button
-// LINK TO CATEGORY
-
 export default AllBoards;

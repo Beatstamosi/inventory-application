@@ -1,4 +1,5 @@
 import styles from "./Board.module.css";
+import { Link } from "react-router";
 
 function Board({ board }) {
   return (
@@ -11,9 +12,13 @@ function Board({ board }) {
       <p>Bought for {board.price}€</p>
       <p>
         used for:{" "}
-        <a href={board.category_name} className={styles.categoryLink}>
+        <Link
+          to={`/category/${board.category_name}`}
+          className={styles.categoryLink}
+        >
+          {" "}
           {board.category_name}
-        </a>
+        </Link>
       </p>
       <hr />
       <div className={styles.containerBtns}>

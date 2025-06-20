@@ -1,10 +1,8 @@
 .containerHome {
-  justify-content: center;
-  align-content: center;
-  align-items: center;
   gap: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
 .containerHeader {
@@ -13,6 +11,7 @@
   justify-content: center;
   align-items: center;
   border-right: 1px solid var(--logoBlue);
+  margin-right: 50px;
 }
 
 .containerHeader h2 {

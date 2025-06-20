@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import {
   addCategoryToDb,
+  deleteCategory,
   getAllBoards,
   getAllCategories,
 } from "./db/queries.js";
@@ -61,6 +62,18 @@ app.post("/api/addcategory", async (req, res) => {
     res.status(201).json({ message: "Category added", result });
   } catch (err) {
     console.error(`Error adding category: ${err}`);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+app.delete("/api/delete-category", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    await deleteCategory(id);
+    res.status(201).json({ message: "Category deleted" });
+  } catch (err) {
+    console.error("Error deleting category", err);
     res.status(500).json({ error: "Database error" });
   }
 });

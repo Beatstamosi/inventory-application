@@ -47,4 +47,20 @@ async function addCategoryToDb(name, description) {
   }
 }
 
-export { getAllBoards, getAllCategories, addCategoryToDb };
+async function deleteCategory(id) {
+  try {
+    const result = await pool.query("DELETE FROM categories WHERE id = ($1);", [
+      id,
+    ]);
+
+    if (result.rowCount === 1) {
+      console.log("Category successful deleted");
+    } else {
+      console.error("Failed to delete category");
+    }
+  } catch (err) {
+    throw err;
+  }
+}
+
+export { getAllBoards, getAllCategories, addCategoryToDb, deleteCategory };

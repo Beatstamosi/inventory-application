@@ -13,7 +13,6 @@ function App() {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("Boards:", data.boards);
         setBoards(data.boards);
       })
       .catch((error) => {
@@ -25,7 +24,6 @@ function App() {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("categories:", data.categories);
         setCategories(data.categories);
       })
       .catch((error) => {
@@ -40,7 +38,7 @@ function App() {
           <div className="layout">
             <NavBar />
             <div className="main">
-            <Outlet />
+              <Outlet />
             </div>
             <Footer />
           </div>

@@ -1,9 +1,10 @@
 .containerHome {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-content: center;
-  gap: 50px;
+  align-items: center;
+  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .containerHeader {
@@ -11,11 +12,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  border-right: 1px solid var(--logoBlue);
 }
 
-.containerHeader span {
+.containerHeader h2 {
   color: red;
+  font-size: 4em;
+}
+
+.containerHeader p {
+  font-size: 2em;
 }
 
 .containerCategories {
@@ -23,6 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .categories {

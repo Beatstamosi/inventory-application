@@ -34,4 +34,17 @@ async function getAllCategories() {
   return rows;
 }
 
-export { getAllBoards, getAllCategories };
+async function addCategoryToDb(name, description) {
+  try {
+    const result = await pool.query(
+      "INSERT INTO categories (name, description) VALUES ($1, $2) RETURNING name, description;",
+      [name, description]
+    );
+
+    return result.rows[0];
+  } catch (err) {
+    throw err;
+  }
+}
+
+export { getAllBoards, getAllCategories, addCategoryToDb };

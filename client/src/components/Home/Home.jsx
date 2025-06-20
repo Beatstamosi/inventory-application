@@ -5,18 +5,16 @@ import { useCategories } from "../CategoriesContext.js";
 
 function Home() {
   const boards = useBoards();
-  const categories = useCategories();
+  const { categories } = useCategories();
 
   return (
     <main className={styles.containerHome}>
       <section className={styles.containerHeader}>
-        <h2>
-          Currently you have <span>{boards.length}</span> boards in your quiver!
-        </h2>
+        <h2>{boards.length}</h2>
+        <p>Boards in your current Quiver</p>
         <NavButton destination={"all-boards"} />
       </section>
       <section className={styles.containerCategories}>
-        <h2>Categories</h2>
         <div className={styles.categories}>
           {categories.map((category) => (
             <a href={`/category/${category.name}`} key={category.id}>

@@ -6,7 +6,7 @@ import { useCategories } from "../CategoriesContext.js";
 
 function DisplayCategory() {
   const boards = useBoards();
-  const categories = useCategories();
+  const { categories } = useCategories();
   let { name: categoryName } = useParams();
 
   // to access description

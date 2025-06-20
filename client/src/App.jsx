@@ -36,10 +36,14 @@ function App() {
   return (
     <>
       <BoardsContext.Provider value={boards}>
-        <CategoriesContext.Provider value={categories}>
-          <NavBar />
-          <Outlet />
-          <Footer />
+        <CategoriesContext.Provider value={{ categories, setCategories }}>
+          <div className="layout">
+            <NavBar />
+            <div className="main">
+            <Outlet />
+            </div>
+            <Footer />
+          </div>
         </CategoriesContext.Provider>
       </BoardsContext.Provider>
     </>

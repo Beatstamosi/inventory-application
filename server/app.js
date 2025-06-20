@@ -3,7 +3,11 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import { getAllBoards, getAllCategories } from "./db/queries.js";
+import {
+  addCategoryToDb,
+  getAllBoards,
+  getAllCategories,
+} from "./db/queries.js";
 
 dotenv.config();
 
@@ -11,6 +15,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Enable CORS only in dev
@@ -45,6 +50,18 @@ app.get("/api/getallcategories", async (req, res) => {
   } catch (err) {
     console.err(err);
     res.status(500).json({ error: "Data could not be fetched" });
+  }
+});
+
+app.post("/api/addcategory", async (req, res) => {
+  const { name, description } = req.body;
+
+  try {
+    const result = await addCategoryToDb(name, description);
+    res.status(201).json({ message: "Category added", result });
+  } catch (err) {
+    console.error(`Error adding category: ${err}`);
+    res.status(500).json({ error: "Database error" });
   }
 });
 

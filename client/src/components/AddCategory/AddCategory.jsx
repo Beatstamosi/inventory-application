@@ -1,14 +1,48 @@
+import { useState } from "react";
 import styles from "./AddCategory.module.css";
+import { useNavigate } from "react-router-dom";
+import { useCategories } from "../CategoriesContext.js";
 
 function AddCategory() {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const { categories, setCategories } = useCategories();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/addcategory`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, description }),
+        }
+      );
+      const data = await res.json();
+
+      if (res.ok) {
+        setName("");
+        setDescription("");
+        setCategories([...categories, data.result]);
+        navigate(`/category/${data.result.name}`);
+      } else {
+        console.error("Failed to add category", data.error);
+      }
+    } catch (err) {
+      console.error("Error adding Category:", err);
+    }
+  };
+
   return (
     <div className={styles.containerForm}>
       <h2>Create new Category</h2>
-      <form
-        action="/addcategory"
-        method="post"
-        className={styles.addCategoryForm}
-      >
+      <form onSubmit={handleSubmit} className={styles.addCategoryForm}>
         <div className={styles.containerLabelInput}>
           <label htmlFor="name">
             Name<span aria-label="required">*</span>
@@ -18,6 +52,8 @@ function AddCategory() {
             id="name"
             name="name"
             placeholder="Cruising"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -29,10 +65,14 @@ function AddCategory() {
             name="description"
             id="description"
             placeholder="For days when I just want to cruise around"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             required
           ></textarea>
         </div>
-        <button type="submit" className={styles.submitBtn}>Add Category</button>
+        <button type="submit" className={styles.submitBtn}>
+          Add Category
+        </button>
       </form>
     </div>
   );

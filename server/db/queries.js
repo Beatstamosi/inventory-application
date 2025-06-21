@@ -63,4 +63,21 @@ async function deleteCategory(id) {
   }
 }
 
-export { getAllBoards, getAllCategories, addCategoryToDb, deleteCategory };
+async function getAllBrands() {
+  try {
+    const { rows } = await pool.query("SELECT * from brands;");
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+}
+
+
+
+export {
+  getAllBoards,
+  getAllCategories,
+  addCategoryToDb,
+  deleteCategory,
+  getAllBrands,
+};

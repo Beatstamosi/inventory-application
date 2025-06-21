@@ -8,6 +8,7 @@ import {
   deleteCategory,
   getAllBoards,
   getAllCategories,
+  getAllBrands,
 } from "./db/queries.js";
 
 dotenv.config();
@@ -75,6 +76,16 @@ app.delete("/api/delete-category", async (req, res) => {
   } catch (err) {
     console.error("Error deleting category", err);
     res.status(500).json({ error: "Database error" });
+  }
+});
+
+app.get("/api/getbrands", async (req, res) => {
+  try {
+    const brands = await getAllBrands();
+    res.status(201).json({ brands });
+  } catch (err) {
+    console.error("Error fetching brands", err);
+    res.status(500).json({ error: "Database Error" });
   }
 });
 

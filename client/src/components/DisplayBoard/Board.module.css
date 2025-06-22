@@ -51,6 +51,7 @@
 .delete {
   background-color: lightcoral;
   color: white;
+  border: none;
 }
 
 .delete:hover {

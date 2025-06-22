@@ -1,7 +1,30 @@
 import styles from "./Board.module.css";
 import { Link } from "react-router";
 
-function Board({ board }) {
+function Board({ board, onDelete }) {
+  const handleDeleteBoard = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/deleteboard`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: board.id }),
+        }
+      );
+
+      if (res.ok) {
+        onDelete(board.id);
+      } else {
+        console.error("Failed to delete Board.");
+      }
+    } catch (err) {
+      console.error("Error deleting board: ", err);
+    }
+  };
+
   return (
     <div key={board.id} className={styles.board}>
       <p className={styles.boardName}>{board.name}</p>
@@ -28,12 +51,12 @@ function Board({ board }) {
         >
           Edit
         </a>
-        <a
-          href={`/delete/${board.name}`}
+        <button
+          onClick={handleDeleteBoard}
           className={`${styles.btn} ${styles.delete}`}
         >
           Delete
-        </a>
+        </button>
       </div>
     </div>
   );

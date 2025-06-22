@@ -5,6 +5,10 @@ import Board from "../DisplayBoard/Board";
 function AllBoards() {
   const [boards, setBoards] = useState([]);
 
+  const handleBoardDelete = (deleteId) => {
+    setBoards((prevBoards) => prevBoards.filter((b) => b.id != deleteId));
+  };
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
       .then((res) => res.json())
@@ -19,7 +23,7 @@ function AllBoards() {
   return (
     <div className={styles.containerBoards}>
       {boards.map((board) => (
-        <Board board={board} key={board.id} />
+        <Board board={board} onDelete={handleBoardDelete} key={board.id} />
       ))}
     </div>
   );

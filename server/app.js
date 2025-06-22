@@ -11,6 +11,7 @@ import {
   getAllBrands,
   addBoard,
   getBoardsCategory,
+  deleteBoard,
 } from "./db/queries.js";
 
 dotenv.config();
@@ -111,6 +112,18 @@ app.post("/api/addboard", async (req, res) => {
     res.status(201).json({ message: "Board added succesfully." });
   } catch (err) {
     console.error("Error adding board".err);
+    res.status(500).json({ error: "Database Error." });
+  }
+});
+
+app.delete("/api/deleteboard", async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    await deleteBoard(id);
+    res.status(201).json({ message: "Board deleted succesfully." });
+  } catch (err) {
+    console.error("Error deleting board: ", err);
     res.status(500).json({ error: "Database Error." });
   }
 });

@@ -10,6 +10,10 @@ function DisplayCategory() {
   let { name: categoryName } = useParams();
   const navigate = useNavigate();
 
+  const handleBoardDelete = (deletedId) => {
+    setBoards((prevBoards) => prevBoards.filter((b) => b.id !== deletedId));
+  };
+
   useEffect(() => {
     fetch(
       `${
@@ -76,7 +80,7 @@ function DisplayCategory() {
       </div>
       <div className={styles.containerBoards}>
         {showBoards.map((board) => (
-          <Board board={board} key={board.id} />
+          <Board board={board} onDelete={handleBoardDelete} key={board.id} />
         ))}
       </div>
     </div>

@@ -105,6 +105,14 @@ async function addBoard(name, size, volume, price, brand, category) {
   }
 }
 
+async function deleteBoard(id) {
+  try {
+    await pool.query("DELETE FROM boards WHERE boards.id = ($1);", [id]);
+  } catch (err) {
+    throw err;
+  }
+}
+
 export {
   getAllBoards,
   getAllCategories,
@@ -113,4 +121,5 @@ export {
   getAllBrands,
   addBoard,
   getBoardsCategory,
+  deleteBoard,
 };

@@ -18,6 +18,28 @@ async function getAllBoards() {
   return rows;
 }
 
+async function getBoardsCategory(categoryName) {
+  const { rows } = await pool.query(
+    `
+    SELECT 
+      boards.id,
+      boards.name,
+      boards.size,
+      boards.volume,
+      boards.price,
+      brands.name AS brand_name,
+      categories.name AS category_name
+    FROM boards
+    JOIN categories ON boards.category = categories.id
+    JOIN brands ON boards.brand = brands.id
+    WHERE categories.name = ($1)
+  `,
+    [categoryName]
+  );
+
+  return rows;
+}
+
 async function getAllCategories() {
   const { rows } = await pool.query(`
     SELECT 
@@ -72,7 +94,16 @@ async function getAllBrands() {
   }
 }
 
-
+async function addBoard(name, size, volume, price, brand, category) {
+  try {
+    await pool.query(
+      "INSERT INTO boards (name, size, volume, price, brand, category) VALUES ($1,$2,$3,$4,$5,$6);",
+      [name, size, volume, price, brand, category]
+    );
+  } catch (err) {
+    throw err;
+  }
+}
 
 export {
   getAllBoards,
@@ -80,4 +111,6 @@ export {
   addCategoryToDb,
   deleteCategory,
   getAllBrands,
+  addBoard,
+  getBoardsCategory,
 };

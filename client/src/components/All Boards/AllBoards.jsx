@@ -1,9 +1,20 @@
 import styles from "./AllBoards.module.css";
-import { useBoards } from "../BoardsContext";
+import { useState, useEffect } from "react";
 import Board from "../DisplayBoard/Board";
 
 function AllBoards() {
-  const boards = useBoards();
+  const [boards, setBoards] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBoards(data.boards);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch boards:", error);
+      });
+  }, []);
 
   return (
     <div className={styles.containerBoards}>

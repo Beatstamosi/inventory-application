@@ -1,14 +1,29 @@
 import styles from "./displayCategory.module.css";
-import { useBoards } from "../BoardsContext";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import Board from "../DisplayBoard/Board";
 import { useCategories } from "../CategoriesContext.js";
 
 function DisplayCategory() {
-  const boards = useBoards();
+  const [boards, setBoards] = useState([]);
   const { categories, setCategories } = useCategories();
   let { name: categoryName } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }/api/getboardscategory/${categoryName}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setBoards(data.boards);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch boards:", error);
+      });
+  }, [categoryName]);
 
   // to access description
   const category = categories.find((c) => c.name == categoryName);

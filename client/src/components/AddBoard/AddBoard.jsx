@@ -5,15 +5,14 @@ import { useCategories } from "../CategoriesContext.js";
 import { useEffect } from "react";
 
 function AddBoard() {
+  const { categories } = useCategories();
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [volume, setVolume] = useState("");
   const [price, setPrice] = useState(0.0);
-  const [selectedBrand, setSelectedBrand] = useState();
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [brands, setBrands] = useState([]);
-
-  const { categories } = useCategories();
 
   // get brands via API call
   useEffect(() => {
@@ -24,6 +23,15 @@ function AddBoard() {
   }, []);
 
   const navigate = useNavigate();
+
+  const resetForm = () => {
+    setName("");
+    setSize("");
+    setVolume("");
+    setPrice(0);
+    setSelectedBrand("");
+    setSelectedCategory("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +57,7 @@ function AddBoard() {
       const data = await res.json();
 
       if (res.ok) {
-        setName("");
-        setSize("");
-        setVolume("");
-        setPrice();
-        setSelectedBrand();
-        setSelectedCategory;
+        resetForm();
         navigate(`/all-boards`);
       } else {
         console.error("Failed to add board", data.error);
@@ -86,7 +89,13 @@ function AddBoard() {
           <label htmlFor="brand">
             Brand<span aria-label="required">*</span>
           </label>
-          <select name="brand" id="brand">
+          <select
+            name="brand"
+            id="brand"
+            value={selectedBrand}
+            onChange={(e) => setSelectedBrand(e.target.value)}
+          >
+            <option value="">-- Select a Brand --</option>
             {brands.map((brand) => (
               <option value={brand.id} key={brand.id}>
                 {brand.name}
@@ -141,7 +150,13 @@ function AddBoard() {
           <label htmlFor="category">
             Category<span aria-label="required">*</span>
           </label>
-          <select name="category" id="category">
+          <select
+            name="category"
+            id="category"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">-- Select a category --</option>
             {categories.map((cat) => (
               <option value={cat.id} key={cat.id}>
                 {cat.name}

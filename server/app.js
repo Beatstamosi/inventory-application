@@ -9,6 +9,8 @@ import {
   getAllBoards,
   getAllCategories,
   getAllBrands,
+  addBoard,
+  getBoardsCategory,
 } from "./db/queries.js";
 
 dotenv.config();
@@ -41,6 +43,17 @@ app.get("/api/getallboards", async (req, res) => {
     res.json({ boards });
   } catch (err) {
     console.err(err);
+    res.status(500).json({ error: "Data could not be fetched" });
+  }
+});
+
+app.get("/api/getboardscategory/:categoryName", async (req, res) => {
+  const { categoryName } = req.params;
+  try {
+    const boards = await getBoardsCategory(categoryName);
+    res.json({ boards });
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Data could not be fetched" });
   }
 });
@@ -86,6 +99,19 @@ app.get("/api/getbrands", async (req, res) => {
   } catch (err) {
     console.error("Error fetching brands", err);
     res.status(500).json({ error: "Database Error" });
+  }
+});
+
+app.post("/api/addboard", async (req, res) => {
+  const { name, size, volume, price, selectedBrand, selectedCategory } =
+    req.body;
+
+  try {
+    await addBoard(name, size, volume, price, selectedBrand, selectedCategory);
+    res.status(201).json({ message: "Board added succesfully." });
+  } catch (err) {
+    console.error("Error adding board".err);
+    res.status(500).json({ error: "Database Error." });
   }
 });
 

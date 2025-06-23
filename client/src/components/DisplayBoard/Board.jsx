@@ -2,6 +2,7 @@ import styles from "./Board.module.css";
 import { Link } from "react-router";
 
 function Board({ board, onDelete }) {
+  console.log(board);
   const handleDeleteBoard = async () => {
     try {
       const res = await fetch(
@@ -45,12 +46,13 @@ function Board({ board, onDelete }) {
       </p>
       <hr />
       <div className={styles.containerBtns}>
-        <a
-          href={`/edit/${board.name}`}
+        <Link
+          to={`/edit-board/${board.name}`}
+          state={{ board }}
           className={`${styles.btn} ${styles.edit}`}
         >
           Edit
-        </a>
+        </Link>
         <button
           onClick={handleDeleteBoard}
           className={`${styles.btn} ${styles.delete}`}

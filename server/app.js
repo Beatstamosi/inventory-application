@@ -12,6 +12,7 @@ import {
   addBoard,
   getBoardsCategory,
   deleteBoard,
+  editBoard,
 } from "./db/queries.js";
 
 dotenv.config();
@@ -125,6 +126,19 @@ app.delete("/api/deleteboard", async (req, res) => {
   } catch (err) {
     console.error("Error deleting board: ", err);
     res.status(500).json({ error: "Database Error." });
+  }
+});
+
+app.put("/api/editboard", async (req, res) => {
+  const { id, name, size, volume, price, selectedBrand, selectedCategory } =
+    req.body;
+
+  try {
+    await editBoard(id, name, size, volume, price, selectedBrand, selectedCategory);
+    res.status(201).json({ message: "Edit successfull. " });
+  } catch (err) {
+    console.error("Error editing Board", err);
+    res.status(500).json({ error: "Database Error" });
   }
 });
 

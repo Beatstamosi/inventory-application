@@ -8,6 +8,8 @@ async function getAllBoards() {
       boards.size,
       boards.volume,
       boards.price,
+      boards.category AS categoryId,
+      boards.brand AS brandId,
       brands.name AS brand_name,
       categories.name AS category_name
     FROM boards
@@ -27,6 +29,8 @@ async function getBoardsCategory(categoryName) {
       boards.size,
       boards.volume,
       boards.price,
+      boards.category AS categoryId,
+      boards.brand AS brandId,
       brands.name AS brand_name,
       categories.name AS category_name
     FROM boards
@@ -113,6 +117,19 @@ async function deleteBoard(id) {
   }
 }
 
+async function editBoard(id, name, size, volume, price, brand, category) {
+  try {
+    await pool.query(
+      `UPDATE boards 
+       SET name = $1, size = $2, volume = $3, price = $4, brand = $5, category = $6 
+       WHERE id = $7;`,
+      [name, size, volume, price, brand, category, id]
+    );
+  } catch (err) {
+    throw err;
+  }
+}
+
 export {
   getAllBoards,
   getAllCategories,
@@ -122,4 +139,5 @@ export {
   addBoard,
   getBoardsCategory,
   deleteBoard,
+  editBoard,
 };

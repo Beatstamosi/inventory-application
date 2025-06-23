@@ -5,6 +5,7 @@ import AddBoard from "./AddBoard/AddBoard.jsx";
 import AddCategory from "./AddCategory/AddCategory.jsx";
 import AllBoards from "./All Boards/AllBoards.jsx";
 import DisplayCategory from "./Category/displayCategory.jsx";
+import EditBoard from "./EditBoard/EditBoard.jsx";
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
       {
         path: "add-board",
         element: <AddBoard />,
+      },
+      {
+        path: "/edit-board/:name",
+        element: <EditBoard />,
       },
       {
         path: "add-category",

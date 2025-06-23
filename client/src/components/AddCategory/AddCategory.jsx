@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./AddCategory.module.css";
 import { useNavigate } from "react-router-dom";
 import { useCategories } from "../CategoriesContext.js";
+import secretPassword from "../secretPassword.js";
 
 function AddCategory() {
   const [name, setName] = useState("");
@@ -12,6 +13,9 @@ function AddCategory() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let password = secretPassword();
+    if (!password) return;
 
     try {
       const res = await fetch(

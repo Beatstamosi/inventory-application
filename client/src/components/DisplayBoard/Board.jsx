@@ -1,9 +1,15 @@
 import styles from "./Board.module.css";
 import { Link } from "react-router";
+import secretPassword from "../secretPassword.js";
 
 function Board({ board, onDelete }) {
   console.log(board);
-  const handleDeleteBoard = async () => {
+  const handleDeleteBoard = async (e) => {
+    e.preventDefault();
+
+    let password = secretPassword();
+    if (!password) return;
+
     try {
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/deleteboard`,

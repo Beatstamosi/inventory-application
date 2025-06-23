@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./AddBoard.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import secretPassword from "../secretPassword.js";
 
 function AddBoard() {
   const [categories, setCategories] = useState([]);
@@ -63,6 +64,9 @@ function AddBoard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let password = secretPassword();
+    if (!password) return;
 
     try {
       const res = await fetch(

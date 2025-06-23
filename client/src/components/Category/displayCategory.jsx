@@ -2,6 +2,7 @@ import styles from "./displayCategory.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router";
 import Board from "../DisplayBoard/Board";
+import secretPassword from "../secretPassword.js";
 
 function DisplayCategory() {
   const [boards, setBoards] = useState([]);
@@ -10,6 +11,9 @@ function DisplayCategory() {
   const navigate = useNavigate();
 
   const handleBoardDelete = (deletedId) => {
+    let password = secretPassword();
+    if (!password) return;
+
     setBoards((prevBoards) => prevBoards.filter((b) => b.id !== deletedId));
   };
 
@@ -48,6 +52,9 @@ function DisplayCategory() {
 
   const handleDeleteCategory = async (e) => {
     e.preventDefault();
+
+    let password = secretPassword();
+    if (!password) return;
 
     try {
       const res = await fetch(

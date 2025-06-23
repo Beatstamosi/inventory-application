@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./EditBoard.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import secretPassword from "../secretPassword.js";
 
 function EditBoard() {
   const navigate = useNavigate();
@@ -47,6 +48,9 @@ function EditBoard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let password = secretPassword();
+    if (!password) return;
 
     try {
       const res = await fetch(

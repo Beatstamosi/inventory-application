@@ -1,11 +1,10 @@
 import { useState } from "react";
 import styles from "./AddBoard.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useCategories } from "../CategoriesContext.js";
 import { useEffect } from "react";
 
 function AddBoard() {
-  const { categories } = useCategories();
+  const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [volume, setVolume] = useState("");
@@ -20,6 +19,28 @@ function AddBoard() {
   const [selectedCategory, setSelectedCategory] = useState(
     preselectedCategory ? preselectedCategory : ""
   );
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
 
   // get brands via API call
   useEffect(() => {
@@ -65,7 +86,7 @@ function AddBoard() {
 
       if (res.ok) {
         resetForm();
-        navigate(`/all-boards`);
+        navigate(-1);
       } else {
         console.error("Failed to add board", data.error);
       }

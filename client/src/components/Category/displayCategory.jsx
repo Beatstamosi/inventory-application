@@ -2,17 +2,27 @@ import styles from "./displayCategory.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router";
 import Board from "../DisplayBoard/Board";
-import { useCategories } from "../CategoriesContext.js";
 
 function DisplayCategory() {
   const [boards, setBoards] = useState([]);
-  const { categories, setCategories } = useCategories();
+  const [categories, setCategories] = useState([]);
   let { name: categoryName } = useParams();
   const navigate = useNavigate();
 
   const handleBoardDelete = (deletedId) => {
     setBoards((prevBoards) => prevBoards.filter((b) => b.id !== deletedId));
   };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
 
   useEffect(() => {
     fetch(

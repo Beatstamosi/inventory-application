@@ -2,7 +2,7 @@ import { Client } from "pg";
 import "dotenv/config";
 
 const createBrands = `
-CREATE TABLE brands (
+CREATE TABLE IF NOT EXISTS brands (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(250)
@@ -10,7 +10,7 @@ CREATE TABLE brands (
 `;
 
 const createCategories = `
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(250)
@@ -25,9 +25,9 @@ const createBoards = `
         volume VARCHAR ( 100 ),
         price FLOAT,
         brand INTEGER NOT NULL,
-        category INTEGER NOT NULL,
-        FOREIGN KEY (brand) REFERENCES brands(id) ,
-        FOREIGN KEY (category) REFERENCES categories(id)
+        category INTEGER,
+        FOREIGN KEY (brand) REFERENCES brands(id),
+        FOREIGN KEY (category) REFERENCES categories(id) ON DELETE SET NULL
     );
 `;
 

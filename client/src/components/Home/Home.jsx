@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import NavButton from "../Navigation Button/NavButton.jsx";
-import { useCategories } from "../CategoriesContext.js";
 
 function Home() {
   const [boards, setBoards] = useState([]);
-  const { categories } = useCategories();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)

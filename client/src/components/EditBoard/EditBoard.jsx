@@ -1,4 +1,3 @@
-import { useCategories } from "../CategoriesContext.js";
 import { useState, useEffect } from "react";
 import styles from "./EditBoard.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,7 +8,7 @@ function EditBoard() {
   const board = location.state?.board;
 
   const id = board.id;
-  const { categories } = useCategories();
+  const [categories, setCategories] = useState([]);
   const [name, setName] = useState(board.name);
   const [size, setSize] = useState(board.size);
   const [volume, setVolume] = useState(board.volume);
@@ -17,6 +16,17 @@ function EditBoard() {
   const [selectedBrand, setSelectedBrand] = useState(board.brandid);
   const [selectedCategory, setSelectedCategory] = useState(board.categoryid);
   const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.categories);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch categories:", error);
+      });
+  }, []);
 
   // get brands via API call
   useEffect(() => {

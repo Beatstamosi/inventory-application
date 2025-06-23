@@ -18,7 +18,9 @@ function DisplayCategory() {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.categories);
@@ -32,7 +34,7 @@ function DisplayCategory() {
     fetch(
       `${
         import.meta.env.VITE_API_BASE_URL
-      }/api/getboardscategory/${categoryName}`
+      }/api/categories/getboardscategory/${categoryName}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -58,7 +60,7 @@ function DisplayCategory() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/delete-category`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/categories/delete-category`,
         {
           method: "DELETE",
           headers: {

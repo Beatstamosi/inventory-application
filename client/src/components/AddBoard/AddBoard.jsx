@@ -22,18 +22,9 @@ function AddBoard() {
   );
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data.categories);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch categories:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.categories);
@@ -45,7 +36,7 @@ function AddBoard() {
 
   // get brands via API call
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getbrands`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/brands/getbrands`)
       .then((res) => res.json())
       .then((data) => setBrands(data.brands))
       .catch((err) => console.error("Error fetching brands", err));
@@ -70,7 +61,7 @@ function AddBoard() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/addboard`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/boards/addboard`,
         {
           method: "POST",
           headers: {

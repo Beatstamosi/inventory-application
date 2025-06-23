@@ -14,7 +14,7 @@ function AllBoards() {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/boards/getallboards`)
       .then((res) => res.json())
       .then((data) => {
         setBoards(data.boards);

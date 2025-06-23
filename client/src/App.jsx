@@ -8,7 +8,9 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.categories);

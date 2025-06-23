@@ -1,6 +1,6 @@
 import pool from "./pool.js";
 
-async function getAllBoards() {
+async function getAllBoardsQuery() {
   const { rows } = await pool.query(`
     SELECT 
       boards.id,
@@ -20,7 +20,7 @@ async function getAllBoards() {
   return rows;
 }
 
-async function getBoardsCategory(categoryName) {
+async function getBoardsCategoryQuery(categoryName) {
   const { rows } = await pool.query(
     `
     SELECT 
@@ -44,7 +44,7 @@ async function getBoardsCategory(categoryName) {
   return rows;
 }
 
-async function getAllCategories() {
+async function getAllCategoriesQuery() {
   const { rows } = await pool.query(`
     SELECT 
       categories.id,
@@ -60,7 +60,7 @@ async function getAllCategories() {
   return rows;
 }
 
-async function addCategoryToDb(name, description) {
+async function addCategoryQuery(name, description) {
   try {
     const result = await pool.query(
       "INSERT INTO categories (name, description) VALUES ($1, $2) RETURNING name, description;",
@@ -73,7 +73,7 @@ async function addCategoryToDb(name, description) {
   }
 }
 
-async function deleteCategory(id) {
+async function deleteCategoryQuery(id) {
   try {
     const result = await pool.query("DELETE FROM categories WHERE id = ($1);", [
       id,
@@ -89,7 +89,7 @@ async function deleteCategory(id) {
   }
 }
 
-async function getAllBrands() {
+async function getAllBrandsQuery() {
   try {
     const { rows } = await pool.query("SELECT * from brands;");
     return rows;
@@ -98,7 +98,7 @@ async function getAllBrands() {
   }
 }
 
-async function addBoard(name, size, volume, price, brand, category) {
+async function addBoardQuery(name, size, volume, price, brand, category) {
   try {
     await pool.query(
       "INSERT INTO boards (name, size, volume, price, brand, category) VALUES ($1,$2,$3,$4,$5,$6);",
@@ -109,7 +109,7 @@ async function addBoard(name, size, volume, price, brand, category) {
   }
 }
 
-async function deleteBoard(id) {
+async function deleteBoardQuery(id) {
   try {
     await pool.query("DELETE FROM boards WHERE boards.id = ($1);", [id]);
   } catch (err) {
@@ -117,7 +117,7 @@ async function deleteBoard(id) {
   }
 }
 
-async function editBoard(id, name, size, volume, price, brand, category) {
+async function editBoardQuery(id, name, size, volume, price, brand, category) {
   try {
     await pool.query(
       `UPDATE boards 
@@ -131,13 +131,13 @@ async function editBoard(id, name, size, volume, price, brand, category) {
 }
 
 export {
-  getAllBoards,
-  getAllCategories,
-  addCategoryToDb,
-  deleteCategory,
-  getAllBrands,
-  addBoard,
-  getBoardsCategory,
-  deleteBoard,
-  editBoard,
+  getAllBoardsQuery,
+  getAllCategoriesQuery,
+  addCategoryQuery,
+  deleteCategoryQuery,
+  getAllBrandsQuery,
+  addBoardQuery,
+  getBoardsCategoryQuery,
+  deleteBoardQuery,
+  editBoardQuery,
 };

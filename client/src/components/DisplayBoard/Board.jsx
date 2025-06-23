@@ -12,7 +12,7 @@ function Board({ board, onDelete }) {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/deleteboard`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/boards/deleteboard`,
         {
           method: "DELETE",
           headers: {

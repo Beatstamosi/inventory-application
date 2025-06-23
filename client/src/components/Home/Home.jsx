@@ -7,7 +7,7 @@ function Home() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallcategories`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.categories);
@@ -18,7 +18,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/getallboards`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/boards/getallboards`)
       .then((res) => res.json())
       .then((data) => {
         setBoards(data.boards);

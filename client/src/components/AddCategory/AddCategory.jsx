@@ -19,7 +19,7 @@ function AddCategory() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/addcategory`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/categories/addcategory`,
         {
           method: "POST",
           headers: {

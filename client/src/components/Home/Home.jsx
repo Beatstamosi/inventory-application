@@ -7,7 +7,9 @@ function Home() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`)
+    fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/api/categories/getallcategories`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.categories);
@@ -40,9 +42,13 @@ function Home() {
           {categories.map((category) => (
             <a href={`/category/${category.name}`} key={category.id}>
               <div className={styles.category}>
-                {category.name}
-                <span>{category.board_count}</span>
-                <span>→ See Boards</span>
+                <div>{category.name}</div>
+                <div>
+                  <span>{category.board_count} Board(s)</span>
+                </div>
+                <div>
+                  <span>→ See All</span>
+                </div>
               </div>
             </a>
           ))}

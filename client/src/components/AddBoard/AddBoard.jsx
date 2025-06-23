@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./AddBoard.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCategories } from "../CategoriesContext.js";
 import { useEffect } from "react";
 
@@ -11,8 +11,15 @@ function AddBoard() {
   const [volume, setVolume] = useState("");
   const [price, setPrice] = useState(0.0);
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [brands, setBrands] = useState([]);
+
+  // preselect category if given
+  const location = useLocation();
+  const preselectedCategory = location.state?.preselectCat;
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    preselectedCategory ? preselectedCategory : ""
+  );
 
   // get brands via API call
   useEffect(() => {

@@ -1,6 +1,6 @@
 import styles from "./displayCategory.module.css";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, Link } from "react-router";
 import Board from "../DisplayBoard/Board";
 import { useCategories } from "../CategoriesContext.js";
 
@@ -83,6 +83,13 @@ function DisplayCategory() {
           <Board board={board} onDelete={handleBoardDelete} key={board.id} />
         ))}
       </div>
+      <Link
+        to="/add-board"
+        state={{ preselectCat: category.id }}
+        className={styles.addCategoryBtn}
+      >
+        +
+      </Link>
     </div>
   );
 }

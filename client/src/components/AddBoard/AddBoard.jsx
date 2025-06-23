@@ -81,7 +81,7 @@ function AddBoard() {
 
       if (res.ok) {
         resetForm();
-        navigate(-1);
+        navigate("/all-boards");
       } else {
         console.error("Failed to add board", data.error);
       }
@@ -117,6 +117,7 @@ function AddBoard() {
             id="brand"
             value={selectedBrand}
             onChange={(e) => setSelectedBrand(e.target.value)}
+            required
           >
             <option value="">-- Select a Brand --</option>
             {brands.map((brand) => (
@@ -178,6 +179,7 @@ function AddBoard() {
             id="category"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
+            required
           >
             <option value="">-- Select a category --</option>
             {categories.map((cat) => (

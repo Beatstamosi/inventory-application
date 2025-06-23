@@ -1,15 +1,11 @@
 import styles from "./AllBoards.module.css";
 import { useState, useEffect } from "react";
 import Board from "../DisplayBoard/Board";
-import secretPassword from "../secretPassword.js";
 
 function AllBoards() {
   const [boards, setBoards] = useState([]);
 
   const handleBoardDelete = (deleteId) => {
-    let password = secretPassword();
-    if (!password) return;
-
     setBoards((prevBoards) => prevBoards.filter((b) => b.id != deleteId));
   };
 

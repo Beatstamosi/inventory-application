@@ -11,9 +11,6 @@ function DisplayCategory() {
   const navigate = useNavigate();
 
   const handleBoardDelete = (deletedId) => {
-    let password = secretPassword();
-    if (!password) return;
-
     setBoards((prevBoards) => prevBoards.filter((b) => b.id !== deletedId));
   };
 

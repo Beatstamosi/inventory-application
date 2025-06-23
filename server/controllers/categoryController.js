@@ -4,6 +4,12 @@ import {
   getBoardsCategoryQuery,
   deleteCategoryQuery,
 } from "../db/queries.js";
+import { body, validationResult } from "express-validator";
+
+const validateCategory = [
+  body("name").trim().notEmpty(),
+  body("description").trim().notEmpty(),
+];
 
 async function getBoardsCategory(req, res) {
   const { categoryName } = req.params;
@@ -26,17 +32,24 @@ async function getAllCategories(req, res) {
   }
 }
 
-async function addCategory(req, res) {
-  const { name, description } = req.body;
+const addCategory = [
+  validateCategory,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() });
+    }
+    const { name, description } = req.body;
 
-  try {
-    const result = await addCategoryQuery(name, description);
-    res.status(201).json({ message: "Category added", result });
-  } catch (err) {
-    console.error(`Error adding category: ${err}`);
-    res.status(500).json({ error: "Database error" });
-  }
-}
+    try {
+      const result = await addCategoryQuery(name, description);
+      res.status(201).json({ message: "Category added", result });
+    } catch (err) {
+      console.error(`Error adding category: ${err}`);
+      res.status(500).json({ error: "Database error" });
+    }
+  },
+];
 
 async function deleteCategory(req, res) {
   const { id } = req.body;

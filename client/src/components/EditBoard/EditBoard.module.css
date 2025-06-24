@@ -1,54 +1,105 @@
+:root {
+  --logoBlue: #0a66c2;
+  --textColor: #1a1a1a;
+  --inputBg: #ffffff;
+  --borderColor: #cfd8dc;
+  --formBg: #f5faff;
+}
+
 .containerForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+  background-color: var(--formBg);
+  padding: 50px 30px;
+  margin: 50px auto;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.containerForm h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--logoBlue);
+  margin-bottom: 30px;
 }
 
 .addCategoryForm {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 20px;
+  gap: 25px;
 }
 
 .containerLabelInput {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--textColor);
+}
+
+label span[aria-label="required"] {
+  color: red;
+  margin-left: 4px;
 }
 
 input,
-textarea {
-  font-size: 1em;
-  padding: 5px 10px;
-  width: 500px;
-  border-radius: 5px;
-  border: 1px solid var(--logoBlue);
+textarea,
+select {
+  font-size: 1rem;
+  padding: 10px 12px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--inputBg);
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--logoBlue);
 }
 
 textarea {
-  height: 200px;
+  height: 120px;
+  resize: vertical;
 }
 
 .submitBtn {
   background-color: var(--logoBlue);
   color: white;
-  padding: 5px 10px;
-  width: fit-content;
+  padding: 12px 24px;
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 1em;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
 }
 
 .submitBtn:hover {
-  background-color: darkgreen;
+  background-color: #004b99;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .containerForm {
+    padding: 30px 20px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 0.95rem;
+  }
+
+  .submitBtn {
+    width: 100%;
+    text-align: center;
+  }
 }

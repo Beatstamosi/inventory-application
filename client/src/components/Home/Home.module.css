@@ -1,67 +1,99 @@
 .containerHome {
-  gap: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 40px;
+  flex-wrap: wrap;
 }
 
 .containerHeader {
+  flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
   align-items: center;
-  /* border-right: 1px solid var(--logoBlue); */
-  margin-right: 50px;
+  text-align: center;
+  border-right: 2px solid var(--logoBlue);
+  padding-right: 40px;
 }
 
 .containerHeader h2 {
-  color: red;
-  font-size: 4em;
+  color: var(--logoBlue);
+  font-size: 4rem;
+  margin-bottom: 0.5em;
 }
 
 .containerHeader p {
-  font-size: 2em;
+  font-size: 1.5rem;
+  color: var(--textLight);
+  margin-bottom: 1.5em;
 }
 
 .containerCategories {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  flex: 2;
+  min-width: 300px;
+  padding: 0 20px;
 }
 
 .categories {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 20px;
 }
 
 .category {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
-  background-color: lightblue;
-  width: 700px;
-  height: 100px;
-  font-weight: bold;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
+  background-color: var(--categoryBg);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 800px;
 }
 
 .category:hover {
-  transform: scale(1.1);
+  background-color: var(--categoryHoverBg);
+  transform: translateY(-5px);
+}
+
+.category div:first-child {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--textDark);
 }
 
 .category span {
-  font-weight: 100;
-  font-size: 1em;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--textLight);
 }
 
 a {
   text-decoration: none;
-  color: var(--logoBlue);
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .containerHome {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .containerHeader {
+    border-right: none;
+    border-bottom: 2px solid var(--logoBlue);
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+
+  .category {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
 }

@@ -1,39 +1,92 @@
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.containerContent h2 {
+  font-size: 2.5rem;
+  color: var(--logoBlue);
+  margin-bottom: 10px;
+}
+
+.containerContent p {
+  font-size: 1.2rem;
+  color: var(--textDark);
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
 .containerBoards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 50px;
+  gap: 25px;
+  margin-top: 40px;
 }
 
-.containerContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.addCategoryBtn {
-  margin-top: 20px;
-  display: block;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border: 2px solid #f5f5f5;
-  border-radius: 50%;
-  color: #f5f5f5;
-  text-align: center;
-  text-decoration: none;
-  background: #555777;
-  box-shadow: 0 0 3px lightblue;
-  font-size: 20px;
+/* DELETE BUTTON */
+form button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #c9302c;
+}
+
+/* FLOATING + BUTTON */
+.addCategoryBtn {
+  margin-top: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 60px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
 }
 
 .addCategoryBtn:hover {
   background-color: var(--logoBlue);
-  transform: scale(1.1);
-  color: white;
+  transform: scale(1.15);
+  color: #fff;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .containerBoards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .containerContent h2 {
+    font-size: 2rem;
+  }
+
+  .addCategoryBtn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+    line-height: 50px;
+  }
 }

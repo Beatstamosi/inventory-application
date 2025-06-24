@@ -1,64 +1,90 @@
 .board {
-  background-color: lightblue;
-  width: 500px;
-  color: var(--logoBlue);
-  padding: 10px;
-  border-radius: 10px;
+  background-color: var(--cardBg);
+  color: var(--textPrimary);
+  padding: 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.board:hover {
+  transform: translateY(-4px);
 }
 
 .boardName {
-  font-weight: bold;
-  font-size: 1.2em;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: var(--logoBlue);
 }
 
 .boardBrand {
   font-style: italic;
-  font-size: 0.9em;
+  font-size: 0.95rem;
+  color: var(--textSecondary);
+  margin-bottom: 10px;
+}
+
+.board p {
+  margin: 4px 0;
+  font-size: 1rem;
 }
 
 .categoryLink {
-  font-weight: bold;
+  color: var(--logoBlue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.categoryLink:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  height: 1px;
+  background-color: var(--logoBlue);
+  opacity: 0.3;
 }
 
 .containerBtns {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  color: var(--logoBlue);
-  font-weight: bold;
-  padding: 5px 5px;
-  width: 50px;
-  text-align: center;
-  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: none;
 }
 
 .edit {
-  background-color: var(--logoBlue);
+  background-color: var(--editColor);
   color: white;
 }
 
 .edit:hover {
-  background-color: lightskyblue;
-  color: var(--logoBlue);
+  background-color: #005bb5;
+  color: #fff;
 }
 
 .delete {
-  background-color: lightcoral;
+  background-color: var(--deleteColor);
   color: white;
-  border: none;
 }
 
 .delete:hover {
-  background-color: lightpink;
-  color: var(--logoBlue);
-}
-
-hr {
-  border: 1px solid var(--logoBlue);
+  background-color: #c9302c;
+  color: #fff;
 }

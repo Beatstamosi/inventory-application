@@ -1,5 +1,22 @@
 :root {
-  --logoBlue: #273054;
+  --logoBlue: #0a66c2;
+  --categoryBg: #e6f0fa;
+  --categoryHoverBg: #d0e4f7;
+  --textDark: #1a1a1a;
+  --textLight: #666;
+  --navText: #1a1a1a;
+  --hoverBg: rgba(10, 102, 194, 0.1);
+  --bgLight: #f9f9f9;
+  --accent: #555777;
+  --cardBg: #f0f8ff;
+  --brandColor: #555777;
+  --deleteColor: #d9534f;
+  --editHover: #e0f0ff;
+  --textPrimary: #1a1a1a;
+  --textSecondary: #555;
+  --editColor: #0a66c2;
+  --deleteColor: #d9534f;
+  --bgLight: #f8fafd;
 }
 
 body {
